@@ -1,3 +1,9 @@
+1. ESLINST
+2. Edge cases
+3. Test / Jest
+4. Timer
+
+
 mkdir may17
 npm init
 npm init --yes

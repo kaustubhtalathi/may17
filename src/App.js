@@ -6,7 +6,9 @@ import Game from './Game';
 class App extends Component {
   state = {
     gameId: 1,
+    // score: 0,
   };
+  // changeScore = (isWon) => {};
   render() {
     return (
       <div className="App">
