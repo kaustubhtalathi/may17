@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sampleSize from 'lodash.samplesize';
 
 import Key from './Key';
 
@@ -16,14 +17,27 @@ class Game extends Component {
     selectedKeys: [],
   };
   challengeKeys = Array.from({ length: 6 }).map(() => randomNumberBetween(2, 10));
-  target = this.challengeKeys.slice(0, 4).reduce((curr, acc) => curr + acc, 0);
+  target = sampleSize(this.challengeKeys, 4).reduce((acc, curr) => curr + acc, 0);
   selectKey = keyId => {
     this.setState(prevState => {
+      if (prevState.gameStatus !== 'playing') {
+        return null;
+      }
       // prevState.selectedKeys
+      const newSelectedKeys = [...prevState.selectedKeys, keyId];
       return {
-        selectedKeys: [...prevState.selectedKeys, keyId],
+        selectedKeys: newSelectedKeys,
+        gameStatus: this.calcGameStatus(newSelectedKeys),
       };
     });
+  };
+  calcGameStatus = newSelectedKeys => {
+    if (newSelectedKeys.length !== 4) {
+      return 'playing';
+    }
+
+    const sumSelected = newSelectedKeys.reduce((acc, curr) => acc + this.challengeKeys[curr], 0);
+    return sumSelected === this.target ? 'won' : 'lost';
   };
   render() {
     return (

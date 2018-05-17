@@ -6,7 +6,11 @@ const Key = ({
   <div
     className="number"
     style={{ opacity: isClickable ? 1 : 0.3 }}
-    onClick={() => onClickAction(id)}
+    onClick={() => {
+      if (isClickable) {
+        onClickAction(id);
+      }
+    }}
   >
     {value}
   </div>
