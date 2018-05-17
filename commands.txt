@@ -1,0 +1,26 @@
+mkdir may17
+npm init
+npm init --yes
+git init
+git commit -m "first commit"
+git remote add origin https://github.com/samerbuna/may17.git
+git push
+npm ls -g --depth=0
+npm i -g create-react-app
+which create-react-app
+create-react-app --help
+rm package.json
+create-react-app . --use-npm
+ll
+atom .
+gst
+git add .
+cd ..
+cd may17/
+npx react-scripts start
+less node_modules/react-scripts/package.json
+less node_modules/.bin/react-scripts
+npm run eject
+npm start
+npm i -D eslint
+npx eslint --init
