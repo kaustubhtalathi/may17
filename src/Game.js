@@ -57,10 +57,6 @@ class Game extends Component {
             />
           ))}
         </div>
-        <div className="footer">
-          <div className="timer-value">15</div>
-          <button>Start</button>
-        </div>
       </div>
     );
   }
