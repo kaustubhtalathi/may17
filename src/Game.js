@@ -13,10 +13,18 @@ const targetColors = {
 class Game extends Component {
   state = {
     gameStatus: 'playing', // 'won', 'lost'
-    selectedKeys: [0, 5],
+    selectedKeys: [],
   };
   challengeKeys = Array.from({ length: 6 }).map(() => randomNumberBetween(2, 10));
   target = this.challengeKeys.slice(0, 4).reduce((curr, acc) => curr + acc, 0);
+  selectKey = keyId => {
+    this.setState(prevState => {
+      // prevState.selectedKeys
+      return {
+        selectedKeys: [...prevState.selectedKeys, keyId],
+      };
+    });
+  };
   render() {
     return (
       <div className="game">
@@ -28,8 +36,10 @@ class Game extends Component {
           {this.challengeKeys.map((value, index) => (
             <Key
               key={index}
+              id={index}
               value={value}
               isClickable={this.state.selectedKeys.indexOf(index) === -1}
+              onClickAction={this.selectKey}
             />
           ))}
         </div>
