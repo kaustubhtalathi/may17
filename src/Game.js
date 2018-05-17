@@ -6,13 +6,14 @@ const randomNumberBetween = (min, max) => Math.floor(Math.random() * (max - min 
 
 class Game extends Component {
   challengeKeys = Array.from({ length: 6 }).map(() => randomNumberBetween(2, 10));
+  target = this.challengeKeys.slice(0, 4).reduce((curr, acc) => curr + acc, 0);
   render() {
     return (
       <div className="game">
         <div className="help">Pick 4 numbers that sum to the target in 15 seconds</div>
-        <div className="target">{randomNumberBetween(20, 40)}</div>
+        <div className="target">{this.target}</div>
         <div className="challenge-numbers">
-          {this.challengeKeys.map(value => <Key value={value} />)}
+          {this.challengeKeys.map((value, index) => <Key key={index} value={value} />)}
         </div>
         <div className="footer">
           <div className="timer-value">15</div>
