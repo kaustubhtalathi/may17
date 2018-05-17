@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 
 import Key from './Key';
 
+const randomNumberBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
 class Game extends Component {
+  challengeKeys = Array.from({ length: 6 }).map(() => randomNumberBetween(2, 10));
   render() {
     return (
       <div className="game">
         <div className="help">Pick 4 numbers that sum to the target in 15 seconds</div>
-        <div className="target">42</div>
+        <div className="target">{randomNumberBetween(20, 40)}</div>
         <div className="challenge-numbers">
-          <Key value={8} />
-          <Key value={5} />
-          <Key value={12} />
-          <Key value={13} />
-          <Key value={16} />
-          <Key value={17} />
+          {this.challengeKeys.map(value => <Key value={value} />)}
         </div>
         <div className="footer">
           <div className="timer-value">15</div>
